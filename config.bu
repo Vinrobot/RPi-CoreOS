@@ -1,0 +1,22 @@
+variant: fcos
+version: 1.5.0
+
+systemd:
+  units:
+  - name: rpm-ostree-countme.timer
+    enabled: false
+    mask: true
+
+storage:
+  files:
+  - path: /etc/hostname
+    mode: 0644
+    contents:
+      inline: rpi3.local
+  - path: /etc/vconsole.conf
+    mode: 0644
+    contents:
+      inline: KEYMAP=fr_CH
+  links:
+  - path: /etc/localtime
+    target: /usr/share/zoneinfo/Europe/Zurich
