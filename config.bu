@@ -6,6 +6,9 @@ systemd:
   - name: rpm-ostree-countme.timer
     enabled: false
     mask: true
+  - name: fix-mbr.service
+    enabled: true
+    contents_local: fix-mbr.service
 
 storage:
   files:
@@ -17,6 +20,10 @@ storage:
     mode: 0644
     contents:
       inline: KEYMAP=fr_CH
+  - path: /usr/local/bin/fix-mbr.sh
+    mode: 0755
+    contents:
+      local: fix-mbr.sh
   links:
   - path: /etc/localtime
     target: /usr/share/zoneinfo/Europe/Zurich

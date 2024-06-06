@@ -11,8 +11,8 @@ all:
 output/rpi3-uefi.zip:
 	curl -sL "$(RPI3_UEFI_ZIP_URL)" -o $@
 
-output/config.ign: config.bu
-	$(BUTANE) --pretty --strict --output=$@ $<
+output/config.ign: config.bu files/*
+	$(BUTANE) --pretty --strict --files-dir=./files --output=$@ $<
 
 .PHONY: output/fcos.img
 output/fcos.img: output/config.ign output/rpi3-uefi.zip
